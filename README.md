@@ -3,61 +3,63 @@
 
 ## usersテーブル
 
-| Column              | Type    | Options     |
-| ----------          | ------  | ----------  |
-| nickname            | string  | NOT NULL    |
-| email               | string  | NOT NULL    |
-| password            | string  | NOT NULL    |
-| family_name         | string  | NOT NULL    |
-| first_name          | string  | NOT NULL    |
-| family_name_kana    | string  | NOT NULL    |
-| first_name_kana     | string  | NOT NULL    |
-| birthday            | date    | NOT NULL    |
+| Column              | Type    | Options                    |
+| ----------          | ------  | ----------                 |
+| nickname            | string  | null: false                |
+| email               | string  | null: false, unique: true  |
+| encrypted_password  | string  | null: false                |
+| family_name         | string  | null: false                |
+| first_name          | string  | null: false                |
+| family_name_kana    | string  | null: false                |
+| first_name_kana     | string  | null: false                |
+| birthday            | date    | null: false                |
 
 ### Association
 
 - has_many  :itmes
-- has_one  :buyer
+- has_many  :buyers
 
 ## itemsテーブル
 
 | Column              | Type          | Options           |
 | ----------          | ------        | ----------        |
-| user_id             | references    | foreign_key: true |
-| image               | ActiveStorage                     |
-| item_name           | string        | NOT NULL          |
-| item_description    | string        | NOT NULL          |
-| item_category       | string        | NOT NULL          |
-| item_status         | string        | NOT NULL          |
-| delivery_charge     | string        | NOT NULL          |
-| shipment_source     | string        | NOT NULL          |
-| shipping_days       | string        | NOT NULL          |
-| selling_price       | numeric       | NOT NULL          |
+| user                | references    | foreign_key: true |
+| name                | string        | null: false       |
+| description         | string        | null: false       |
+| category            | integer       | null: false       |
+| status              | integer       | null: false       |
+| delivery_charge     | integer       | null: false       |
+| address             | integer       | null: false       |
+| shipping_days       | integer       | null: false       |
+| selling_price       | integer       | null: false       |
           
 ### Association
 
 - belong_to  :user
+- belong_to  :buyer
 
-## buyer
+## buyers
  Column               | Type          | Options           |
 | ----------          | ------        | ----------        |
-| user_id             | references    | foreign_key: true |
-| phone_number        | string        | NOT NULL          |
+| user                | references    | foreign_key: true |
+| item                | references    | foreign_key: true |
 
 ### Association
 
 - belong_to  :user
+- has_many  :item
 - has_one  :adress
 
 ## address
  Column               | Type          | Options           |
 | ----------          | ------        | ----------        |
-| buyer_id            | references    | foreign_key: true |
-| postal_code         | string        | NOT NULL          |
-| prefecture          | string        | NOT NULL          |
-| municipality        | string        | NOT NULL          |
-| address             | string        | NOT NULL          |
-| building_name       | string        | NOT NULL          |
+| buyer               | references    | foreign_key: true |
+| postal_code         | string        | null: false       |
+| prefecture          | string        | null: false       |
+| municipality        | string        | null: false       |
+| address             | integer       | null: false       |
+| building_name       | string        |                   |
+| phone_number        | string        | null: false       |
 
 ### Association
 - belong_to :buyer
