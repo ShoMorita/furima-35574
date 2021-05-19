@@ -24,7 +24,6 @@
 | Column              | Type          | Options           |
 | ----------          | ------        | ----------        |
 | user                | references    | foreign_key: true |
-| buyer               | references    | foreign_key: true |
 | name                | string        | null: false       |
 | description         | text          | null: false       |   <!-- 商品説明 -->
 | category_id         | integer       | null: false       |   <!-- カテゴリー：Activehash -->
@@ -48,7 +47,7 @@
 ### Association
 
 - belong_to  :user
-- belong_to  :items
+- belong_to  :item
 - has_one  :adress
 
 ## address
@@ -64,4 +63,3 @@
 
 ### Association
 - belong_to :buyer
-
