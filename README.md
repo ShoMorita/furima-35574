@@ -26,18 +26,18 @@
 | user                | references    | foreign_key: true |
 | buyer               | references    | foreign_key: true |
 | name                | string        | null: false       |
-| description         | string        | null: false       |
-| category_id         | integer       | null: false       |   <!-- Activehash -->
-| status_id           | integer       | null: false       |   <!-- Activehash -->
-| delivery_charge_id  | integer       | null: false       |   <!-- Activehash -->
-| address_id          | integer       | null: false       |   <!-- Activehash -->
-| shipping_days_id    | integer       | null: false       |   <!-- Activehash -->
-| selling_price_id    | integer       | null: false       |   <!-- Activehash -->
+| description         | text          | null: false       |   <!-- 商品説明 -->
+| category_id         | integer       | null: false       |   <!-- カテゴリー：Activehash -->
+| status_id           | integer       | null: false       |   <!-- 商品状況：Activehash -->
+| delivery_charge_id  | integer       | null: false       |   <!-- 配送料の負担：Activehash -->
+| prefecture_id       | integer       | null: false       |   <!-- 発送元の地域：Activehash -->
+| shipping_days_id    | integer       | null: false       |   <!-- 発送までの日数：Activehash -->
+| selling_price       | integer       | null: false       |   
           
 ### Association
 
 - belong_to  :user
-- belong_to  :buyer
+- has_one  :buyer
 
 ## buyers
  Column               | Type          | Options           |
@@ -48,19 +48,19 @@
 ### Association
 
 - belong_to  :user
-- has_many  :items
+- belong_to  :items
 - has_one  :adress
 
 ## address
  Column               | Type          | Options           |
 | ----------          | ------        | ----------        |
 | buyer               | references    | foreign_key: true |
-| postal_code         | string        | null: false       |
-| prefecture          | string        | null: false       |
-| municipality        | string        | null: false       |
-| address_id          | integer       | null: false       |
-| building_name       | string        |                   |
-| phone_number        | text          | null: false       |
+| postal_code         | string        | null: false       |  <!-- 郵便番号 -->
+| prefecture_id       | integer       | null: false       |  <!-- 都道府県 -->
+| municipality        | string        | null: false       |  <!-- 市区町村 -->
+| address             | string        | null: false       |  <!-- 番地 -->
+| building_name       | string        |                   |  <!-- 建物名 -->
+| phone_number        | string        | null: false       |  <!-- 電話番号 -->
 
 ### Association
 - belong_to :buyer
