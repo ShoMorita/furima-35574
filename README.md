@@ -24,14 +24,15 @@
 | Column              | Type          | Options           |
 | ----------          | ------        | ----------        |
 | user                | references    | foreign_key: true |
+| buyer               | references    | foreign_key: true |
 | name                | string        | null: false       |
 | description         | string        | null: false       |
-| category            | integer       | null: false       |
-| status              | integer       | null: false       |
-| delivery_charge     | integer       | null: false       |
-| address             | integer       | null: false       |
-| shipping_days       | integer       | null: false       |
-| selling_price       | integer       | null: false       |
+| category_id         | integer       | null: false       |   <!-- Activehash -->
+| status_id           | integer       | null: false       |   <!-- Activehash -->
+| delivery_charge_id  | integer       | null: false       |   <!-- Activehash -->
+| address_id          | integer       | null: false       |   <!-- Activehash -->
+| shipping_days_id    | integer       | null: false       |   <!-- Activehash -->
+| selling_price_id    | integer       | null: false       |   <!-- Activehash -->
           
 ### Association
 
@@ -47,7 +48,7 @@
 ### Association
 
 - belong_to  :user
-- has_many  :item
+- has_many  :items
 - has_one  :adress
 
 ## address
@@ -57,9 +58,9 @@
 | postal_code         | string        | null: false       |
 | prefecture          | string        | null: false       |
 | municipality        | string        | null: false       |
-| address             | integer       | null: false       |
+| address_id          | integer       | null: false       |
 | building_name       | string        |                   |
-| phone_number        | string        | null: false       |
+| phone_number        | text          | null: false       |
 
 ### Association
 - belong_to :buyer
