@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  root to: "furimas#index"
-  resources :resources
+  root to: "items#index"
+  resources :items
 end

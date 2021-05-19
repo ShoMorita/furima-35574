@@ -64,3 +64,4 @@
 
 ### Association
 - belong_to :buyer
+
