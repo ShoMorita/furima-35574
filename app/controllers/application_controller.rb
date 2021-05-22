@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  # <%# before_action :authenticate_user!  ログインしていない時のユーザーをログイン画面に促す記述%>
   before_action :basic_auth
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -10,9 +11,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # <%# ストロングパラメータ記述%>
+  # <%# devise テーブル保存用　ストロングパラメータ記述%>
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :family_name, :first_name, :family_name_kana, :first_name_kana, :birthday,])
   end
 
 end
