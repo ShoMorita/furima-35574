@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  # belongs_to :user
+  belongs_to :user
   # has_one :buyer
 
   has_one_attached :image
@@ -9,7 +9,6 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :description
-    validates :selling_price
   end
 
   with_options numericality: { other_than: 1 } do
@@ -19,6 +18,11 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :shipping_day_id
   end
+
+  validates :selling_price,
+  numericality: { only_integer: true,
+  greater_than: 299, less_than: 9999999
+  }
 
   belongs_to :category
   belongs_to :status
