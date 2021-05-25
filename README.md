@@ -30,7 +30,7 @@
 | status_id           | integer       | null: false       |   <!-- 商品状況：Activehash -->
 | delivery_charge_id  | integer       | null: false       |   <!-- 配送料の負担：Activehash -->
 | prefecture_id       | integer       | null: false       |   <!-- 発送元の地域：Activehash -->
-| shipping_days_id    | integer       | null: false       |   <!-- 発送までの日数：Activehash -->
+| shipping_day_id    | integer       | null: false       |   <!-- 発送までの日数：Activehash -->
 | selling_price       | integer       | null: false       |   
           
 ### Association
