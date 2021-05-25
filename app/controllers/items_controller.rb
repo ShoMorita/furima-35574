@@ -2,8 +2,9 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create ]
 
   def index
-    # @items = Item.order("created_at DESC")
-    @items = []
+    @items = Item.order("created_at DESC")
+    # <% ”ダミー表示の為作成。出品一覧表示機能終了後削除”　%>
+    # @items = []　
   end
 
   def new
