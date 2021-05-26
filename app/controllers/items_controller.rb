@@ -1,12 +1,10 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create ]
-  before_action :set_item, only: [ :show, :edit, :update ]
-  before_action :move_to_id, only: [:edit, :update ]
+  before_action :set_item, only: [ :show, :edit, :update, :destroy ]
+  before_action :move_to_id, only: [:edit, :update, :destroy ]
 
   def index
     @items = Item.order("created_at DESC")
-    # <% ”ダミー表示の為作成。出品一覧表示機能終了後削除”　%>
-    # @items = []　
   end
 
   def new
@@ -38,6 +36,8 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @item.destroy
+    redirect_to root_path
   end
 
   private
