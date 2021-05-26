@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :create ]
-  before_action :set_item, only: [ :show ]
+  before_action :set_item, only: [ :show, :edit, :update ]
   before_action :move_to_id, only: [:edit, :update ]
 
   def index
@@ -30,7 +30,6 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
     if  @item.update(item_params) 
       redirect_to item_path(@item.id)
     else
@@ -52,7 +51,6 @@ class ItemsController < ApplicationController
   end
 
   def move_to_id
-    @item = Item.find(params[:id])
     redirect_to root_path unless current_user == @item.user
   end
 
