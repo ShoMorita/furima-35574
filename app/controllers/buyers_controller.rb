@@ -1,4 +1,6 @@
 class BuyersController < ApplicationController
+  before_action :move_to_id, only: [:index ]
+
   def index
     @item = Item.find(params[:item_id])
     @donation_address = DonationAddress.new
@@ -25,7 +27,12 @@ class BuyersController < ApplicationController
   
 
   def donation_params
-    params.require(:donation_address).permit(:postal_code, :prefecture_id, :municipality, :address, :building_name, :phone_number ).merge( user_id: current_user.id, item_id: params[:item_id])
+    params.require(:donation_address).permit(:postal_code, :prefecture_id, :municipality, :address, :building_name, :phone_number ).merge( user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+  end
+
+  def move_to_id
+    @item = Item.find(params[:item_id])
+    redirect_to root_path if  @item.buyer.present?
   end
 
   # def item_params
