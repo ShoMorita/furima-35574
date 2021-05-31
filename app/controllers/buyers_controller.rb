@@ -10,12 +10,7 @@ class BuyersController < ApplicationController
   def create
     @donation_address = DonationAddress.new(donation_params)
     if @donation_address.valid?
-      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
-      Payjp::Charge.create(
-        amount: @item[:selling_price],  # 商品の値段
-        card: params[:token],    # カードトークン
-        currency: 'jpy'                 # 通貨の種類（日本円）
-      )
+      pay_item
       @donation_address.save
       redirect_to root_path
     else
@@ -39,17 +34,12 @@ class BuyersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
   
-
-  # def item_params
-  #   params.require(:item).permit(:name, :description, :category_id, :status_id, :delivery_charge_id, :prefecture_id, :shipping_day_id, :selling_price, :image).merge(user_id: current_user.id)
-  # end
-
-  # def buyer_params
-  #   params.require(:buyer).merge(user_id: current_user.id, item_id:current_item.id)
-  # end
-
-  # def address_params
-  #   params.require(:address).permit(:postal_code, :prefecture_id, :municipality, :address, :building_name, :phone_number ).merge(buyer_id: @buyer.id)
-  # end
-
+  def pay_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+      Payjp::Charge.create(
+        amount: @item[:selling_price],  # 商品の値段
+        card: params[:token],    # カードトークン
+        currency: 'jpy'                 # 通貨の種類（日本円）
+      )
+  end
 end
