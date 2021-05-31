@@ -1,4 +1,5 @@
 class BuyersController < ApplicationController
+  before_action :authenticate_user!, only: [ :index ]
   before_action :move_to_id, only: [:index ]
 
   def index
@@ -34,6 +35,7 @@ class BuyersController < ApplicationController
     @item = Item.find(params[:item_id])
     redirect_to root_path if  @item.buyer.present?
   end
+  
 
   # def item_params
   #   params.require(:item).permit(:name, :description, :category_id, :status_id, :delivery_charge_id, :prefecture_id, :shipping_day_id, :selling_price, :image).merge(user_id: current_user.id)
