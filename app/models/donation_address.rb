@@ -4,7 +4,7 @@ class DonationAddress
 
   validates :postal_code, presence: true, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
   validates :municipality, presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
-  validates :phone_number, presence: true, format: { with: /\A\d{11}\z/ } 
+  validates :phone_number, presence: true, format: { with: /\A\d{10,11}\z/ } 
 
   with_options presence: true do
     validates :user_id

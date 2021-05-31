@@ -1,7 +1,7 @@
 class BuyersController < ApplicationController
-  before_action :authenticate_user!, only: [ :index ]
+  before_action :authenticate_user!, only: [ :index, :create ]
   before_action :set_item, only: [ :index, :create ]
-  before_action :move_to_id, only: [:index ]
+  before_action :move_to_id, only: [:index, :create ]
 
   def index
     @donation_address = DonationAddress.new
@@ -26,7 +26,6 @@ class BuyersController < ApplicationController
   end
 
   def move_to_id
-    @item = Item.find(params[:item_id])
     redirect_to root_path if  @item.buyer.present?
   end
 

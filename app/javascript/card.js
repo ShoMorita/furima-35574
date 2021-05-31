@@ -14,11 +14,9 @@ const pay = () => {
       exp_year: `20${formData.get("donation_address[exp_year]")}`,
     };
      
-    console.log(card)
 
     Payjp.createToken(card, (status, response) => {
       if (status == 200) {
-        console.log(status)
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
         const tokenObj = `<input value=${token} name='token' type="hidden"> `;
