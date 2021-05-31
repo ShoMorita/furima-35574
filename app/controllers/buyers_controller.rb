@@ -1,17 +1,16 @@
 class BuyersController < ApplicationController
   before_action :authenticate_user!, only: [ :index ]
+  before_action :set_item, only: [ :index, :create ]
   before_action :move_to_id, only: [:index ]
 
   def index
-    @item = Item.find(params[:item_id])
     @donation_address = DonationAddress.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @donation_address = DonationAddress.new(donation_params)
     if @donation_address.valid?
-      Payjp.api_key = "sk_test_b68f960cbb71a7f899a8cde8"  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
       Payjp::Charge.create(
         amount: @item[:selling_price],  # 商品の値段
         card: params[:token],    # カードトークン
@@ -34,6 +33,10 @@ class BuyersController < ApplicationController
   def move_to_id
     @item = Item.find(params[:item_id])
     redirect_to root_path if  @item.buyer.present?
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
   
 
