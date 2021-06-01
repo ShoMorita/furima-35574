@@ -72,17 +72,6 @@ RSpec.describe DonationAddress, type: :model do
           expect(@donation_address.errors.full_messages).to include("Phone number is invalid")
         end
 
-        it 'phone_numberがuser_id空では登録できない' do
-          @donation_address.user_id = ''
-          @donation_address.valid?
-          expect(@donation_address.errors.full_messages).to include("User can't be blank")
-        end
-
-        it 'phone_numberがitem_id空では登録できない' do
-          @donation_address.item_id = ''
-          @donation_address.valid?
-          expect(@donation_address.errors.full_messages).to include("Item can't be blank")
-        end
 
         it 'phone_numberが空では登録できない' do
           @donation_address.phone_number = ''
