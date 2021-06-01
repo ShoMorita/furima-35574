@@ -36,7 +36,7 @@ RSpec.describe DonationAddress, type: :model do
           expect(@donation_address.errors.full_messages).to include( "Postal code can't be blank")
         end
 
-        it 'postal_codeが-がない時では登録できない' do
+        it 'postal_codeが-（ハイフン）がない時では登録できない' do
           @donation_address.postal_code = '8112222'
           @donation_address.valid?
           expect(@donation_address.errors.full_messages).to include( "Postal code is invalid. Include hyphen(-)")
