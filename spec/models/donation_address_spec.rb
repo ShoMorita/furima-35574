@@ -42,72 +42,6 @@ RSpec.describe DonationAddress, type: :model do
           expect(@donation_address.errors.full_messages).to include( "Postal code is invalid. Include hyphen(-)")
         end
 
-        it 'municipalityが空では登録できない' do
-          @donation_address.municipality = ''
-          @donation_address.valid?
-          expect(@donation_address.errors.full_messages).to include("Municipality can't be blank")
-        end
-        
-        it 'addressが空では登録できない' do
-          @donation_address.address = ''
-          @donation_address.valid?
-          expect(@donation_address.errors.full_messages).to include("Address can't be blank")
-        end
-        
-        it 'phone_numberが空では登録できない' do
-          @donation_address.phone_number = ''
-          @donation_address.valid?
-          expect(@donation_address.errors.full_messages).to include("Phone number can't be blank")
-        end
-
-        it 'tokenが空では登録できない' do
-          @donation_address.token = ''
-          @donation_address.valid?
-          expect(@donation_address.errors.full_messages).to include("Token can't be blank")
-        end
-        
-        it 'prefecture_idがid:1では登録できない' do
-          @donation_address.prefecture_id = 1
-          @donation_address.valid?
-          expect(@donation_address.errors.full_messages).to include("Prefecture must be other than 1")
-        end
-        
-        it 'postal_codeが全角数字では登録できない' do
-          @donation_address.postal_code = '０００−００００'
-          @donation_address.valid?
-          expect(@donation_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
-        end
-        
-        it 'postal_codeが全角では登録できない' do
-          @donation_address.postal_code = 'あ'
-          @donation_address.valid?
-          expect(@donation_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
-        end
-        
-        it 'postal_codeが英字では登録できない' do
-          @donation_address.postal_code = 'aaa'
-          @donation_address.valid?
-          expect(@donation_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
-        end
-        
-        it 'postal_codeが半角カタカナでは登録できない' do
-          @donation_address.postal_code = 'ｶﾀｶﾅ'
-          @donation_address.valid?
-          expect(@donation_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
-        end
-        
-        it 'municipalityが数字では登録できない' do
-          @donation_address.municipality = '123456'
-          @donation_address.valid?
-          expect(@donation_address.errors.full_messages).to include("Municipality is invalid")
-        end
-        
-        it 'municipalityが英字では登録できない' do
-          @donation_address.municipality = 'aaaaaaa'
-          @donation_address.valid?
-          expect(@donation_address.errors.full_messages).to include("Municipality is invalid")
-        end
-        
         it 'phone_numberが全角では登録できない' do
           @donation_address.phone_number = 'あ'
           @donation_address.valid?
@@ -149,6 +83,74 @@ RSpec.describe DonationAddress, type: :model do
           @donation_address.valid?
           expect(@donation_address.errors.full_messages).to include("Item can't be blank")
         end
+
+        it 'phone_numberが空では登録できない' do
+          @donation_address.phone_number = ''
+          @donation_address.valid?
+          expect(@donation_address.errors.full_messages).to include("Phone number can't be blank")
+        end
+
+        it 'prefecture_idがid:1では登録できない' do
+          @donation_address.prefecture_id = 1
+          @donation_address.valid?
+          expect(@donation_address.errors.full_messages).to include("Prefecture must be other than 1")
+        end
+        
+        it 'postal_codeが全角数字では登録できない' do
+          @donation_address.postal_code = '０００−００００'
+          @donation_address.valid?
+          expect(@donation_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        end
+        
+        it 'postal_codeが全角では登録できない' do
+          @donation_address.postal_code = 'あ'
+          @donation_address.valid?
+          expect(@donation_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        end
+        
+        it 'postal_codeが英字では登録できない' do
+          @donation_address.postal_code = 'aaa'
+          @donation_address.valid?
+          expect(@donation_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        end
+        
+        it 'postal_codeが半角カタカナでは登録できない' do
+          @donation_address.postal_code = 'ｶﾀｶﾅ'
+          @donation_address.valid?
+          expect(@donation_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        end
+
+        it 'municipalityが空では登録できない' do
+          @donation_address.municipality = ''
+          @donation_address.valid?
+          expect(@donation_address.errors.full_messages).to include("Municipality can't be blank")
+        end
+
+        it 'municipalityが数字では登録できない' do
+          @donation_address.municipality = '123456'
+          @donation_address.valid?
+          expect(@donation_address.errors.full_messages).to include("Municipality is invalid")
+        end
+        
+        it 'municipalityが英字では登録できない' do
+          @donation_address.municipality = 'aaaaaaa'
+          @donation_address.valid?
+          expect(@donation_address.errors.full_messages).to include("Municipality is invalid")
+        end
+        
+        it 'addressが空では登録できない' do
+          @donation_address.address = ''
+          @donation_address.valid?
+          expect(@donation_address.errors.full_messages).to include("Address can't be blank")
+        end
+        
+        
+        it 'tokenが空では登録できない' do
+          @donation_address.token = ''
+          @donation_address.valid?
+          expect(@donation_address.errors.full_messages).to include("Token can't be blank")
+        end
+      
       end
     end
   end
