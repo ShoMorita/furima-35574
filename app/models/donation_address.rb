@@ -18,7 +18,7 @@ class DonationAddress
 
   def save
     buyer = Buyer.create(user_id: user_id, item_id: item_id)
-    Address.create(buyer_id: buyer_id, postal_code: postal_code, prefecture_id: prefecture_id, municipality: municipality, address: address, building_name: building_name, phone_number: phone_number)
+    Address.create(buyer_id: buyer.id, postal_code: postal_code, prefecture_id: prefecture_id, municipality: municipality, address: address, building_name: building_name, phone_number: phone_number)
   end
 end
 
