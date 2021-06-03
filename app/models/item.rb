@@ -21,7 +21,7 @@ class Item < ApplicationRecord
 
   validates :selling_price,
   numericality: { only_integer: true,
-  greater_than: 299, less_than: 9999999
+  greater_than: 299, less_than_or_equal_to: 9999999
   }
 
   belongs_to :category
